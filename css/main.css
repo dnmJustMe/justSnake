@@ -1,0 +1,132 @@
+body {
+  margin: 0px;
+}
+
+#page {
+  min-height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#game {
+  display: none;
+}
+
+#board,
+.boardInfo {
+  max-width: 100vw;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+#start .boardeInfo {
+  font-size: 25px;
+}
+
+@keyframes pulseOut {
+  0% {
+    width: 100px;
+    height: 100px;
+  }
+  100% {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@keyframes pulseIn {
+  0% {
+    width: 60px;
+    height: 60px;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+#startOut {
+  background-color: #4b4a4a46;
+  height: 100px;
+  width: 100px;
+  animation: 1s infinite normal pulseOut;
+  -webkit-box-shadow: 10px 10px 58px 14px #4b4a4a46;
+  -moz-box-shadow: 10px 10px 58px 14px #4b4a4a46;
+  box-shadow: 10px 10px 58px 14px #4b4a4a46;
+}
+
+#startIn {
+  background-color: #8887875e;
+  height: 60px;
+  width: 60px;
+  animation-delay: 0.5s;
+  animation: 1s infinite normal pulseIn;
+}
+
+#startOut,
+#startIn {
+  border-radius: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#gameOver {
+  display: none;
+  font-size: 5em;
+}
+
+#conteo {
+  display: none;
+  position: absolute;
+  font-size: 3em;
+  color: white;
+}
+
+.boardInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#start {
+  background-color: transparent;
+  transform: scale(3);
+  border: none;
+  color: white;
+}
+
+#start:hover {
+  cursor: pointer;
+}
+
+#scoreBoard {
+  display: inline-flex;
+}
+
+.square {
+  aspect-ratio: 1;
+  height: 8vh;
+  width: auto;
+}
+
+.emptySquare {
+  background-color: #456990;
+}
+
+.snakeSquare {
+  background-color: #ccf47f;
+}
+
+.foodSquare {
+  background-color: #f35a69;
+}
