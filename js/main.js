@@ -1,23 +1,26 @@
-const board = document.getElementById('board');
-const game = document.getElementById('game');
-const conteo = document.getElementById('conteo');
-const scoreBoard = document.getElementById('scoreBoard');
-const startButton = document.getElementById('start');
-const startBoard = document.getElementById('startOut')
-const gameOverSign = document.getElementById('gameOver');
+const board = document.getElementById("board");
+const game = document.getElementById("game");
+const conteo = document.getElementById("conteo");
+const scoreBoard = document.getElementById("scoreBoard");
+const startButton = document.getElementById("startButton");
+const startWelcome = document.getElementById("startWelcome");
+const gameOverSign = document.getElementById("gameOver");
+const highScore = document.getElementById("highScore");
+const highScoreBoard = document.getElementById("highScoreBoard");
+const playAgainButton = document.getElementById("playAgainButton");
 
 const boardSize = 10;
 const gameSpeed = 200;
 const squareTypes = {
-    emptySquare: 0,
-    snakeSquare: 1,
-    foodSquare: 2
+  emptySquare: 0,
+  snakeSquare: 1,
+  foodSquare: 2,
 };
 const directions = {
-    ArrowUp: -10,
-    ArrowDown: 10,
-    ArrowRight: 1,
-    ArrowLeft: -1,
+  ArrowUp: -10,
+  ArrowDown: 10,
+  ArrowRight: 1,
+  ArrowLeft: -1,
 };
 
 let snake;
@@ -28,142 +31,193 @@ let emptySquares;
 let moveInterval;
 
 const drawSnake = () => {
-    snake.forEach(square => drawSquare(square, 'snakeSquare'));
-}
+  snake.forEach(function (square) {
+    drawSquare(square, "snakeSquare");
+    var ultimo1 = snake[0][0];
+    var ultimo2 = snake[0][1];
+    var penultimo1 = snake[1][0];
+    var penultimo2 = snake[1][1];
+
+    switch (direction) {
+      case "ArrowRight":
+        drawSquare(
+          snake[snake.length - 1],
+          "snakeSquareHead movementHeadRight"
+        );
+        break;
+      case "ArrowLeft":
+        drawSquare(snake[snake.length - 1], "snakeSquareHead movementHeadLeft");
+        break;
+      case "ArrowDown":
+        drawSquare(snake[snake.length - 1], "snakeSquareHead movementHeadDown");
+        break;
+      case "ArrowUp":
+        drawSquare(snake[snake.length - 1], "snakeSquareHead movementHeadUp");
+        break;
+    }
+
+    if (ultimo1 == penultimo1 && ultimo2 < penultimo2) {
+      drawSquare(snake[0], "snakeSquareTail movementTailRight");
+    } else if (ultimo1 == penultimo1 && ultimo2 > penultimo2) {
+      drawSquare(snake[0], "snakeSquareTail movementTailLeft");
+    } else if (ultimo2 == penultimo2 && ultimo1 > penultimo1) {
+      drawSquare(snake[0], "snakeSquareTail movementTailUp");
+    } else if (ultimo2 == penultimo2 && ultimo1 < penultimo1) {
+      drawSquare(snake[0], "snakeSquareTail movementTailDown");
+    }
+  });
+};
 
 const drawSquare = (square, type) => {
-    const [row, column] = square.split('');
-    boardSquares[row][column] = squareTypes[type];
-    const squareElement = document.getElementById(square);
-    squareElement.setAttribute('class', `square ${type}`);
+  const [row, column] = square.split("");
+  boardSquares[row][column] = squareTypes[type];
+  const squareElement = document.getElementById(square);
+  squareElement.setAttribute("class", `square ${type}`);
 
-    if (type === 'emptySquare') {
-        emptySquares.push(square);
-    } else {
-        if (emptySquares.indexOf(square) !== -1) {
-            emptySquares.splice(emptySquares.indexOf(square), 1);
-        }
+  if (type === "emptySquare") {
+    emptySquares.push(square);
+  } else {
+    if (emptySquares.indexOf(square) !== -1) {
+      emptySquares.splice(emptySquares.indexOf(square), 1);
     }
-}
+  }
+};
 
 const moveSnake = () => {
-    const newSquare = String(
-        Number(snake[snake.length - 1]) + directions[direction])
-        .padStart(2, '0');
-    const [row, column] = newSquare.split('');
+  const newSquare = String(
+    Number(snake[snake.length - 1]) + directions[direction]
+  ).padStart(2, "0");
+  const [row, column] = newSquare.split("");
 
-
-    if (newSquare < 0 ||
-        newSquare > boardSize * boardSize ||
-        (direction === 'ArrowRight' && column == 0) ||
-        (direction === 'ArrowLeft' && column == 9 ||
-            boardSquares[row][column] === squareTypes.snakeSquare)) {
-        gameOver();
+  if (
+    newSquare < 0 ||
+    newSquare > boardSize * boardSize ||
+    (direction === "ArrowRight" && column == 0) ||
+    (direction === "ArrowLeft" && column == 9) ||
+    boardSquares[row][column] === squareTypes.snakeSquare
+  ) {
+    gameOver();
+  } else {
+    snake.push(newSquare);
+    if (boardSquares[row][column] === squareTypes.foodSquare) {
+      addFood();
     } else {
-        snake.push(newSquare);
-        if (boardSquares[row][column] === squareTypes.foodSquare) {
-            addFood();
-        } else {
-            const emptySquare = snake.shift();
-            drawSquare(emptySquare, 'emptySquare');
-        }
-        drawSnake();
+      const emptySquare = snake.shift();
+      drawSquare(emptySquare, "emptySquare");
     }
-}
+    drawSnake();
+  }
+};
 
 const addFood = () => {
-    score++;
-    updateScore();
-    createRandomFood();
-}
+  score++;
+  updateScore();
+  createRandomFood();
+};
 
 const gameOver = () => {
-    game.style.display = 'none';
-    gameOverSign.style.display = 'block';
-    clearInterval(moveInterval)
-    startButton.disabled = false;
-}
+  game.style.display = "none";
+  gameOverSign.style.display = "flex";
+  clearInterval(moveInterval);
 
-const setDirection = newDirection => {
-    direction = newDirection;
-}
-
-const directionEvent = key => {
-    switch (key.code) {
-        case 'ArrowUp':
-            direction != 'ArrowDown' && setDirection(key.code)
-            break;
-        case 'ArrowDown':
-            direction != 'ArrowUp' && setDirection(key.code)
-            break;
-        case 'ArrowLeft':
-            direction != 'ArrowRight' && setDirection(key.code)
-            break;
-        case 'ArrowRight':
-            direction != 'ArrowLeft' && setDirection(key.code)
-            break;
+  if (localStorage.highScore) {
+    if (localStorage.highScore < score) {
+      localStorage.highScore = score;
     }
-}
+  } else {
+    localStorage.highScore = score;
+  }
+
+  highScore.innerText = localStorage.highScore;
+};
+
+const setDirection = (newDirection) => {
+  direction = newDirection;
+};
+
+const directionEvent = (key) => {
+  switch (key.code) {
+    case "ArrowUp":
+      direction != "ArrowDown" && setDirection(key.code);
+      break;
+    case "ArrowDown":
+      direction != "ArrowUp" && setDirection(key.code);
+      break;
+    case "ArrowLeft":
+      direction != "ArrowRight" && setDirection(key.code);
+      break;
+    case "ArrowRight":
+      direction != "ArrowLeft" && setDirection(key.code);
+      break;
+  }
+};
 
 const createRandomFood = () => {
-    const randomEmptySquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
-    drawSquare(randomEmptySquare, 'foodSquare');
-}
+  const randomEmptySquare =
+    emptySquares[Math.floor(Math.random() * emptySquares.length)];
+  drawSquare(randomEmptySquare, "foodSquare");
+};
 
 const updateScore = () => {
-    scoreBoard.innerText = score;
-}
+  scoreBoard.innerText = score;
+};
 
 const createBoard = () => {
-    boardSquares.forEach((row, rowIndex) => {
-        row.forEach((column, columnndex) => {
-            const squareValue = `${rowIndex}${columnndex}`;
-            const squareElement = document.createElement('div');
-            squareElement.setAttribute('class', 'square emptySquare');
-            squareElement.setAttribute('id', squareValue);
-            board.appendChild(squareElement);
-            emptySquares.push(squareValue);
-        })
-    })
-}
+  boardSquares.forEach((row, rowIndex) => {
+    row.forEach((column, columnndex) => {
+      const squareValue = `${rowIndex}${columnndex}`;
+      const squareElement = document.createElement("div");
+      squareElement.setAttribute("class", "square emptySquare");
+      squareElement.setAttribute("id", squareValue);
+      board.appendChild(squareElement);
+      emptySquares.push(squareValue);
+    });
+  });
+};
 
 const setGame = () => {
-    snake = ['00', '01', '02', '03'];
-    score = snake.length -4;
-    direction = 'ArrowRight';
-    boardSquares = Array.from(Array(boardSize), () => new Array(boardSize).fill(squareTypes.emptySquare));
-    console.log(boardSquares);
-    board.innerHTML = '';
-    emptySquares = [];
-    createBoard();
-}
+  snake = ["00", "01", "02", "03"];
+  score = snake.length - 4;
+  direction = "ArrowRight";
+  boardSquares = Array.from(Array(boardSize), () =>
+    new Array(boardSize).fill(squareTypes.emptySquare)
+  );
+  board.innerHTML = "";
+  emptySquares = [];
+  createBoard();
+};
 
 const startGame = () => {
-    let game = document.getElementById('game')
-    game.style.display = 'block'
-    setGame();
-    gameOverSign.style.display = 'none';
-    startBoard.style.display = 'none';
-    startButton.disabled = true;
-    drawSnake();
-    updateScore();
-    createRandomFood();
-    document.addEventListener('keydown', directionEvent);
-    conteo.style.display = 'flex'
-    setTimeout(() => {
-       conteo.innerHTML = '3' 
-    }, 1000);
-    setTimeout(() => {
-       conteo.innerHTML = '2' 
-    }, 2000);
-    setTimeout(() => {
-       conteo.innerHTML = '1' 
-    }, 3000);
+  let game = document.getElementById("game");
+  game.style.display = "block";
+  setGame();
+  gameOverSign.style.display = "none";
+  startWelcome.style.display = "none";
+  startButton.style.display = "none";
+  drawSnake();
+  if (localStorage.highScore) {
+    highScoreBoard.innerText = localStorage.highScore;
+  }
+  updateScore();
+  createRandomFood();
+  document.addEventListener("keydown", directionEvent);
+  conteo.style.display = "flex";
+  setTimeout(() => {
+    conteo.innerHTML = "3";
+  }, 1000);
+  setTimeout(() => {
+    conteo.innerHTML = "2";
+  }, 2000);
+  setTimeout(() => {
+    conteo.innerHTML = "1";
+  }, 3000);
 
-    setTimeout(() => {
-        conteo.style.display = 'none'
-        moveInterval = setInterval(() => moveSnake(), gameSpeed);
-    }, 4000);
-}
+  setTimeout(() => {
+    conteo.style.display = "none";
+    conteo.innerHTML = "El juego empezará en...";
+    moveInterval = setInterval(() => moveSnake(), gameSpeed);
+  }, 4000);
+};
 
-startButton.addEventListener('click', startGame);
+startButton.addEventListener("click", startGame);
+playAgainButton.addEventListener("click", startGame);

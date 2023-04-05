@@ -13,21 +13,55 @@
 
 <body>
     <div id="page">
+
+        <!-- <div id="controlsLeft" style="margin-left: 2em;">
+            <div id="left"><-</div>
+            <div id="up">i</div>
+        </div> -->
+
         <div id="game">
             <div id="board"></div>
             <div class="boardInfo">
                 <div>
                     Score: <div id="scoreBoard"></div>
                 </div>
+                <div>
+                    High Score: <div id="highScoreBoard">0</div>
+                </div>
             </div>
         </div>
-        <div id="gameOver">Game Over</div>
+
+        <!-- <div id="controlsRight" style="margin-right: 2em;">
+            <div id="right"><-</div>
+            <div id="down">i</div>
+        </div> -->
+
+        <div id="gameOver">
+            <h1>Game Over</h1>
+            <h3 class="highScore">Puntuación más alta: <span id="highScore"></span></h3>
+            <button id="playAgainButton">Jugar de nuevo</button>
+            <div class="bg"></div>
+            <div class="bg bg2"></div>
+            <div class="bg bg3"></div>
+        </div>
+
         <div id="conteo">El juego empezará en...</div>
-        <div id="startOut">
-            <div id="startIn">
-                <button id="start" style="position: relative;left: 4px; top:2px">▶</button>
+
+        <div id="startWelcome" style="min-height: 10vh; display: flex; align-items: center;align-content: center; justify-content: center; margin-top: 0px;">
+            <h1>Jugar a justSnake</h1>
+        </div>
+
+        <div id="startButton" style="min-height: 30vh; display: flex; align-items: center;align-content: center; justify-content: center;">
+            <div id="startOut">
+                <div id="startIn">
+                    <button id="start" style="position: relative;left: 4px; top:2px">▶</button>
+                </div>
+                <div class="bg"></div>
+                <div class="bg bg2"></div>
+                <div class="bg bg3"></div>
             </div>
         </div>
+
     </div>
 
     <script src="js/main.js"></script>
