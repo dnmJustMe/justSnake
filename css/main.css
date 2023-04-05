@@ -26,9 +26,6 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   background-color: #456990;
-
-  background-image: url("../img/patrón-de-textura-césped-natural-fondo-campo-golf-la-parte-superior-con-auténtico-para-el-medio-ambiente-hierba-vista-verde-186174208.jpg");
-  background-size: cover;
 }
 
 #start .boardeInfo {
@@ -136,7 +133,7 @@ body {
 }
 
 .snakeSquare {
-  background-color: #43ff5c;
+  background-color: #4b2626;
   background-image: url("../img//patron-costuras-piel-serpiente-uselo-papel-tapiz-papel-regalo-tela-ilustracion-vectorial_508684-180.jpg");
   background-size: cover;
 }
@@ -219,4 +216,27 @@ body {
   100% {
     transform:translateX(25%);
   }
+}
+
+
+#playAgainButton {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #fafafa;
+  font-size: 20px;
+  background: #85bbf2;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#playAgainButton:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
 }

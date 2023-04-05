@@ -5,6 +5,7 @@ const scoreBoard = document.getElementById("scoreBoard");
 const startButton = document.getElementById("startButton");
 const startWelcome = document.getElementById("startWelcome");
 const gameOverSign = document.getElementById("gameOver");
+const scoreOpinion = document.getElementById("scoreOpinion");
 const highScore = document.getElementById("highScore");
 const highScoreBoard = document.getElementById("highScoreBoard");
 const playAgainButton = document.getElementById("playAgainButton");
@@ -116,17 +117,21 @@ const addFood = () => {
 };
 
 const gameOver = () => {
+    if (localStorage.highScore) {
+      if (localStorage.highScore < score) {
+        localStorage.highScore = score;
+        scoreOpinion.innerText = "Felicidades, has logrado una nueva mejor puntuación!!!"
+      }else{
+        scoreOpinion.innerText = "Puedes hacerlo mejor..."
+      }
+    } else {
+      localStorage.highScore = score;
+    }
+
   game.style.display = "none";
   gameOverSign.style.display = "flex";
   clearInterval(moveInterval);
 
-  if (localStorage.highScore) {
-    if (localStorage.highScore < score) {
-      localStorage.highScore = score;
-    }
-  } else {
-    localStorage.highScore = score;
-  }
 
   highScore.innerText = localStorage.highScore;
 };
