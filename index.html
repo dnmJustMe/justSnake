@@ -13,11 +13,14 @@
 
 <body>
     <div id="page">
+        <div id="aviso-movil-horizontal">
+            Por favor, coloca tu móvil en horizontal.
+        </div>
 
-        <!-- <div id="controlsLeft" style="margin-left: 2em;">
-            <div id="left"><-</div>
-            <div id="up">i</div>
-        </div> -->
+        <div id="controlsLeft" style="margin-right: 4em;">
+            <div id="up" style="margin-bottom: 1em;"><svg aria-hidden="true" focusable="false" data-prefix="fa-regular" data-icon="circle-caret-up" class="svg-inline--fa fa-circle-caret-up fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M273.625 159.719C269.094 154.812 262.688 152 256 152S242.906 154.812 238.375 159.719L142.375 263.719C135.906 270.719 134.188 280.906 138 289.625C141.844 298.344 150.469 304 160 304H352C361.531 304 370.156 298.344 374 289.625C377.812 280.906 376.094 270.719 369.625 263.719L273.625 159.719ZM256 16C123.451 16 16 123.453 16 256S123.451 496 256 496S496 388.547 496 256S388.549 16 256 16ZM256 448C150.131 448 64 361.867 64 256S150.131 64 256 64S448 150.133 448 256S361.869 448 256 448Z" fill="currentColor"/></svg></div>
+            <div id="down"><svg aria-hidden="true" focusable="false" data-prefix="fa-regular" data-icon="circle-caret-down" class="svg-inline--fa fa-circle-caret-down fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M352 208H160C150.469 208 141.844 213.656 138 222.375C134.188 231.094 135.906 241.281 142.375 248.281L238.375 352.281C242.906 357.188 249.312 360 256 360S269.094 357.188 273.625 352.281L369.625 248.281C376.094 241.281 377.812 231.094 374 222.375C370.156 213.656 361.531 208 352 208ZM256 16C123.451 16 16 123.453 16 256S123.451 496 256 496S496 388.547 496 256S388.549 16 256 16ZM256 448C150.131 448 64 361.867 64 256S150.131 64 256 64S448 150.133 448 256S361.869 448 256 448Z" fill="currentColor"/></svg></div>
+        </div>
 
         <div id="game">
             <div id="board"></div>
@@ -31,10 +34,10 @@
             </div>
         </div>
 
-        <!-- <div id="controlsRight" style="margin-right: 2em;">
-            <div id="right"><-</div>
-            <div id="down">i</div>
-        </div> -->
+        <div id="controlsRight" style="margin-left: 2em;">
+            <div id="left" style="margin-bottom: 2em; display: inline-block;"><svg aria-hidden="true" focusable="false" data-prefix="fa-regular" data-icon="circle-caret-left" class="svg-inline--fa fa-circle-caret-left fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 16C123.453 16 16 123.453 16 256S123.453 496 256 496S496 388.547 496 256S388.547 16 256 16ZM256 448C150.133 448 64 361.867 64 256S150.133 64 256 64S448 150.133 448 256S361.867 448 256 448ZM289.625 138C280.906 134.188 270.719 135.906 263.719 142.375L159.719 238.375C154.812 242.906 152 249.312 152 256S154.812 269.094 159.719 273.625L263.719 369.625C270.719 376.094 280.906 377.812 289.625 374C298.344 370.156 304 361.531 304 352V160C304 150.469 298.344 141.844 289.625 138Z" fill="currentColor"/></svg></div>
+            <div id="right" style="display: inline-block;"><svg aria-hidden="true" focusable="false" data-prefix="fa-regular" data-icon="circle-caret-right" class="svg-inline--fa fa-circle-caret-right fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 16C123.453 16 16 123.453 16 256S123.453 496 256 496S496 388.547 496 256C496 123.449 388.547 16 256 16ZM256 448C150.133 448 64 361.867 64 256S150.133 64 256 64S448 150.129 448 256C448 361.867 361.867 448 256 448ZM248.281 142.375C241.281 135.906 231.094 134.188 222.375 138C213.656 141.844 208 150.469 208 160V352C208 361.531 213.656 370.156 222.375 374C231.094 377.812 241.281 376.094 248.281 369.625L352.281 273.625C357.188 269.094 360 262.688 360 256S357.188 242.906 352.281 238.375L248.281 142.375Z" fill="currentColor"/></svg></div>
+        </div>
 
         <div id="gameOver">
             <h1 id="scoreOpinion"></h1>
@@ -47,14 +50,14 @@
 
         <div id="conteo">El juego empezará en...</div>
 
-        <div id="startWelcome" style="min-height: 10vh; display: flex; align-items: center;align-content: center; justify-content: center; margin-top: 0px;">
+        <div id="startWelcome">
             <h1>Jugar a justSnake</h1>
         </div>
 
-        <div id="startButton" style="min-height: 30vh; display: flex; align-items: center;align-content: center; justify-content: center;">
+        <div id="startButton">
             <div id="startOut">
                 <div id="startIn">
-                    <button id="start" style="position: relative;left: 4px; top:2px">▶</button>
+                    <button id="start" style="position: relative;top:2px"><svg aria-hidden="true" focusable="false" data-prefix="fa-solid" data-icon="play" class="svg-inline--fa fa-play fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="height: 1em; width:auto"><path d="M176 480C148.615 480 128 457.608 128 432V80C128 54.62 148.396 32.017 176.012 32.017C184.698 32.017 193.366 34.368 201.031 39.047L489.031 215.047C503.297 223.766 512 239.281 512 256S503.297 288.234 489.031 296.953L201.031 472.953C193.359 477.641 184.688 480 176 480Z" fill="currentColor"/></svg></button>
                 </div>
                 <div class="bg"></div>
                 <div class="bg bg2"></div>
@@ -64,6 +67,7 @@
 
     </div>
 
+    <script src="js/jquery-3.6.0.js"></script>
     <script src="js/main.js"></script>
 </body>
 

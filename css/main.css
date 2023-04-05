@@ -240,3 +240,61 @@ body {
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+#controlsLeft, #controlsRight{
+  display: none
+}
+
+#controlsLeft svg , #controlsRight svg{
+  height: 4em; 
+  width:auto;
+  color: #35537275;
+}
+
+#controlsLeft svg:active , #controlsRight svg:active{
+  color: #355372;
+}
+
+#aviso-movil-horizontal {
+  display: none;
+}
+
+@media only screen and (orientation:portrait) {
+
+  #startWelcome,
+  #startButton,
+  #game,
+  #gameOver,
+  #conteo,
+  #controlsLeft,
+  #controlsRight {
+      display: none;
+  }
+
+  #aviso-movil-horizontal {
+      display: block;
+  }
+}
+
+@media only screen and (orientation:landscape) {
+  #aviso-movil-horizontal {
+      display: none;
+  }
+
+  #startWelcome {
+      min-height: 10vh;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      margin-top: 0px;
+  }
+
+  #startButton {
+      min-height: 30vh;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+  }
+}

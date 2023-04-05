@@ -1,5 +1,6 @@
 const board = document.getElementById("board");
 const game = document.getElementById("game");
+const page = document.getElementById("page");
 const conteo = document.getElementById("conteo");
 const scoreBoard = document.getElementById("scoreBoard");
 const startButton = document.getElementById("startButton");
@@ -9,6 +10,9 @@ const scoreOpinion = document.getElementById("scoreOpinion");
 const highScore = document.getElementById("highScore");
 const highScoreBoard = document.getElementById("highScoreBoard");
 const playAgainButton = document.getElementById("playAgainButton");
+const controlsLeft = document.getElementById("controlsLeft");
+const controlsRight = document.getElementById("controlsRight");
+
 
 const boardSize = 10;
 const gameSpeed = 200;
@@ -117,6 +121,13 @@ const addFood = () => {
 };
 
 const gameOver = () => {
+  var touchDevice = ('ontouchstart' in document.documentElement);
+  if (touchDevice) {
+    controlsLeft.style.display = "none"
+    controlsRight.style.display = "none"
+    page.style.flexDirection = "column"
+  }
+
     if (localStorage.highScore) {
       if (localStorage.highScore < score) {
         localStorage.highScore = score;
@@ -157,6 +168,19 @@ const directionEvent = (key) => {
   }
 };
 
+$('#down').click(function () {
+  setDirection('ArrowDown')
+})
+$('#up').click(function () {
+  setDirection('ArrowUp')
+})
+$('#right').click(function () {
+  setDirection('ArrowRight')
+})
+$('#left').click(function () {
+  setDirection('ArrowLeft')
+})
+
 const createRandomFood = () => {
   const randomEmptySquare =
     emptySquares[Math.floor(Math.random() * emptySquares.length)];
@@ -193,6 +217,12 @@ const setGame = () => {
 };
 
 const startGame = () => {
+  var touchDevice = ('ontouchstart' in document.documentElement);
+if (touchDevice) {
+  controlsLeft.style.display = "block"
+  controlsRight.style.display = "block"
+  page.style.flexDirection = "row"
+}
   let game = document.getElementById("game");
   game.style.display = "block";
   setGame();
