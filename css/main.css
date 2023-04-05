@@ -181,7 +181,7 @@ body {
 }
 
 .foodSquare {
-  background-color: red;
+  background-color: transparent;
   background-image: url("/img/58660f657d90850fc3ce2a41.png");
   background-size: contain;
 }
