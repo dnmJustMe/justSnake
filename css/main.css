@@ -138,8 +138,17 @@ body {
   background-size: cover;
 }
 
+.scalex2{
+  transform: scale(2);
+}
+
 .snakeSquareHead {
   background-image: url("../img/cabeza.png");
+  background-size: contain;
+}
+
+.snakeSquareHeadOpen {
+  background-image: url("../img/cabeza-boca-abierta.png");
   background-size: contain;
 }
 
@@ -186,6 +195,37 @@ body {
   background-size: contain;
 }
 
+.movementSquareRightUp{
+  border-radius: 0 0 50% 0 !important;
+}
+
+.movementSquareRightDown{
+  border-radius: 0 50% 0 0;
+}
+
+.movementSquareLeftUp{
+  border-radius: 0 0 0 50%;
+}
+
+.movementSquareLeftDown{
+  border-radius: 50% 0 0 0;
+}
+
+.movementSquareUpRight{
+  border-radius: 50% 0 0 0;
+}
+
+.movementSquareUpLeft{
+  border-radius: 0 50% 0 0;
+}
+
+.movementSquareDownRight{
+  border-radius: 0 0 0 50%;
+}
+
+.movementSquareDownLeft{
+  border-radius: 0 0 50% 0;
+}
 
 
 .bg {
