@@ -79,7 +79,7 @@ git push origin mejora/tu-feature
 ## 📄 Licencia
 
 © 2023 [Daniel Navarro Machín](https://dnmjustme.github.io/DNMjustMe-site/)  
-Este proyecto se distribuye bajo licencia de código abierto (puedes especificarla si usas MIT, GPL, etc.).
+Este proyecto se distribuye bajo licencia de código abierto.
 
 ## 🌐 Contacto
 
